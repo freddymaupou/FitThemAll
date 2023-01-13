@@ -48,5 +48,6 @@ public class GridManager : MonoBehaviour
             GameObject squareInGrid = Instantiate(squarePrefab, transform);
             grid.Add(squareInGrid);
         }
+        LevelEditorRuntime.Instance.Start();
     }
 }

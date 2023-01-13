@@ -8,10 +8,16 @@ using UnityEngine.UI;
 
 public class LevelEditorRuntime : MonoBehaviour
 {
+    public static LevelEditorRuntime Instance;
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+    }
+
     public FlexibleColorPicker colorPicker;
     private List<LeanSelectable> matSelected = new List<LeanSelectable>();
 
-    private void Start()
+    public void Start()
     {
         for(int i = 0; i < GridManager.Instance.GetGrid.Count; i++)
         {
