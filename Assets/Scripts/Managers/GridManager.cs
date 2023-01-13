@@ -15,6 +15,10 @@ public class GridManager : MonoBehaviour
         if (Instance == null) Instance = this;
 
         grid.AddRange(GameObject.FindGameObjectsWithTag("SquareInGrid"));
+        if(grid.Count > 0)
+        {
+            originalGridColor = grid[0].GetComponent<Image>().color;
+        }
 
     }
     #endregion
@@ -24,10 +28,12 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GameObject squarePrefab;
 
     private List<GameObject> grid = new List<GameObject>();
+    private Color originalGridColor;
 
     public List<BlockBehaviour> BlocksInGrid => blocksInGrid;
     public List<GameObject> GetGrid => grid;
     public int GridSize => gridSize;
+    public Color GetOriginalGridColor { get { return originalGridColor; } set { originalGridColor = value; } }
 
 
     [ContextMenu("Spawn Grid")]
