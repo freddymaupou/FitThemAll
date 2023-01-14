@@ -47,11 +47,18 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0; i < blocksToMove.Count; i++)
+        BlocksToMove.AddRange(FindObjectsOfType<BlockBehaviour>());
+
+        for (int i = 0; i < BlocksToMove.Count; i++)
         {
-            LeanSelectableByFinger selectable = blocksToMove[i].GetComponent<LeanSelectableByFinger>();
-            selectable.OnSelected.AddListener(blocksToMove[i].OnSelect);
-            selectable.OnDeselected.AddListener(blocksToMove[i].OnDeselect);
+            BlocksToMove[i].gameObject.layer = 6;
+            if (!BlocksToMove[i].TryGetComponent(out LeanDragTranslate translate))
+            {
+                LeanSelectableByFinger selectable = blocksToMove[i].GetComponent<LeanSelectableByFinger>();
+                translate.Use.RequiredSelectable = selectable;
+                selectable.OnSelected.AddListener(blocksToMove[i].OnSelect);
+                selectable.OnDeselected.AddListener(blocksToMove[i].OnDeselect);
+            }
         }
 
         // Get lvlMax to prevent any problem by changing any scene and to always have the same maxLvl
@@ -141,7 +148,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckBlocksInGrid()
     {
-        if (GridManager.Instance.BlocksInGrid.Count != GridManager.Instance.GridSize) return;
+        if (blocksToMove.Count > 0) return;
 
         Win();
     }
@@ -168,11 +175,11 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Use Random Color For Each Blocks")]
     public void RandomBlocksColorAtStart()
     {
-        List<Color> colorsUsed = new List<Color>();
+        //List<Color> colorsUsed = new List<Color>();
 
         for (int i = 0; i < blocksToMove.Count; i++)
         {
-            int randomColor = Random.Range(0, colorsToUse.Count);
+            /*int randomColor = Random.Range(0, colorsToUse.Count);
             Color blocksColor = colorsToUse[randomColor];
 
             // To prevent blocks to have the same colors
@@ -183,10 +190,11 @@ public class GameManager : MonoBehaviour
             }
 
             colorsUsed.Add(blocksColor);
-
+*/
+            Color randomColor = Random.ColorHSV(0f,1f,1f,1f);
             for (int j = 0; j < blocksToMove[i].Blocks.Count; j++)
             {
-                blocksToMove[i].Blocks[j].GetComponent<Image>().color = blocksColor;
+                blocksToMove[i].Blocks[j].GetComponent<Image>().color = randomColor;
             }
         }
     }

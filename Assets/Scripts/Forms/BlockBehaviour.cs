@@ -150,7 +150,10 @@ public class BlockBehaviour : MonoBehaviour
                     blocks[i].GetComponent<BlockBehaviour>().inGrid = false;
 
                     gridManager.BlocksInGrid.Remove(blocks[i]);
-                    GameManager.Instance.BlocksToMove.Add(blocks[i]);
+                    if (!GameManager.Instance.BlocksToMove.Contains(blocks[i]))
+                    {
+                        GameManager.Instance.BlocksToMove.Add(blocks[i]);
+                    }
                 }
             }
 
@@ -160,8 +163,6 @@ public class BlockBehaviour : MonoBehaviour
             blockParent.tag = "Untagged";
 
             gridManager.BlocksInGrid.Remove(this);
-            GameManager.Instance.BlocksToMove.Add(this);
-
         }
         else
         {
@@ -238,7 +239,10 @@ public class BlockBehaviour : MonoBehaviour
 
             if (!gridManager.BlocksInGrid.Contains(this))
             {
-                GameManager.Instance.BlocksToMove.Remove(this);
+                for(int i = 0; i < blocks.Count; i++)
+                {
+                    GameManager.Instance.BlocksToMove.Remove(blocks[i]);
+                }
                 gridManager.BlocksInGrid.AddRange(blocks);
                 GameManager.OnCheckGrid?.Invoke();
             }

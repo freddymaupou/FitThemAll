@@ -3,6 +3,8 @@ using Lean.Touch;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,6 +20,7 @@ public class LevelEditorRuntime : MonoBehaviour
     #endregion
 
     public FlexibleColorPicker colorPicker;
+    public GridManager gridManager;
     private List<LeanSelectable> matSelected = new List<LeanSelectable>();
 
     public void Start()
@@ -77,6 +80,16 @@ public class LevelEditorRuntime : MonoBehaviour
                 Instantiate(GridManager.Instance.GetGrid[i], GridManager.Instance.GetGrid[i].transform.localPosition, Quaternion.identity);
             }
             Debug.Log("Form validated and created.");
+            string path = EditorSceneManager.GetActiveScene().path;
+            Debug.Log(path);
+            if(EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene(), path, true))
+            {
+                Debug.Log("Scene saved at " + EditorSceneManager.GetActiveScene().path);
+            }
+            else
+            {
+                Debug.LogError("Failed saving the scene");
+            }
         }
         else
         {

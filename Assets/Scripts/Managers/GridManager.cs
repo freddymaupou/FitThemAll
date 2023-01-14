@@ -26,13 +26,15 @@ public class GridManager : MonoBehaviour
     [SerializeField] private List<BlockBehaviour> blocksInGrid = new List<BlockBehaviour>();
     [SerializeField] private int gridSize = 10;
     [SerializeField] private GameObject squarePrefab;
+    [SerializeField] private GridLayoutGroup gridLayoutGroup;
 
     private List<GameObject> grid = new List<GameObject>();
     private Color originalGridColor;
 
     public List<BlockBehaviour> BlocksInGrid => blocksInGrid;
     public List<GameObject> GetGrid => grid;
-    public int GridSize => gridSize;
+    public GridLayoutGroup GetGridLayoutGroup => gridLayoutGroup;
+    public int GridSize { get { return gridSize; } set { gridSize = value; } }
     public Color GetOriginalGridColor { get { return originalGridColor; } set { originalGridColor = value; } }
 
 
@@ -54,6 +56,6 @@ public class GridManager : MonoBehaviour
             GameObject squareInGrid = Instantiate(squarePrefab, transform);
             grid.Add(squareInGrid);
         }
-        LevelEditorRuntime.Instance.Start();
+        //LevelEditorRuntime.Instance.Start();
     }
 }
