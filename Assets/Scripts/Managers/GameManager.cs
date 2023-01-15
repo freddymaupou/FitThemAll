@@ -47,12 +47,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        BlocksToMove.AddRange(FindObjectsOfType<BlockBehaviour>());
+        blocksToMove.AddRange(FindObjectsOfType<BlockBehaviour>());
 
-        for (int i = 0; i < BlocksToMove.Count; i++)
+        for (int i = 0; i < blocksToMove.Count; i++)
         {
-            BlocksToMove[i].gameObject.layer = 6;
-            if (!BlocksToMove[i].TryGetComponent(out LeanDragTranslate translate))
+            blocksToMove[i].gameObject.layer = 6;
+            if (!blocksToMove[i].TryGetComponent(out LeanDragTranslate translate))
             {
                 LeanSelectableByFinger selectable = blocksToMove[i].GetComponent<LeanSelectableByFinger>();
                 translate.Use.RequiredSelectable = selectable;

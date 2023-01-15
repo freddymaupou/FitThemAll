@@ -46,14 +46,9 @@ public class LevelEditor : Editor
     {
         DrawDefaultInspector();
 
-        GUILayout.BeginHorizontal();
-
-        width = EditorGUILayout.IntField(width);
-        height = EditorGUILayout.IntField(height);
-
+        width = EditorGUILayout.IntField("Width", width);
+        height = EditorGUILayout.IntField("Height", height);
         gridLayout = (GridLayout)EditorGUILayout.EnumPopup("Grid Display", gridLayout);
-
-        GUILayout.EndHorizontal();
 
         bool createGrid = GUILayout.Button("Create Grid");
 
