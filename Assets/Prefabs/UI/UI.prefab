@@ -520,9 +520,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e89dbcfa067fa419ef0fe10b2b0d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  formInGrid: []
-  gridSize: 24
+  blocksInGrid: []
+  gridSize: 16
   squarePrefab: {fileID: 8653446686982130590, guid: 4b001071c8b1d64458a86f44736c7f92, type: 3}
+  gridLayoutGroup: {fileID: 6095236348236997406}
 --- !u!1 &6095236348412091225
 GameObject:
   m_ObjectHideFlags: 0

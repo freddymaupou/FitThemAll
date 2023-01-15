@@ -39,15 +39,18 @@ public class BlockBehaviour : MonoBehaviour
     public bool InGrid { get { return inGrid; } set { inGrid = value; } }
     #endregion
 
-    private void Start()
+    private void Awake()
     {
-        gridManager = GridManager.Instance;
-
         blockParent = transform.parent;
         for(int i = 0; i < blockParent.childCount; i++)
         {
             blocks.Add(blockParent.GetChild(i).GetComponent<BlockBehaviour>());
         }
+    }
+
+    private void Start()
+    {
+        gridManager = GridManager.Instance;
 
         // Get RectTransforms
         thisRectTr = GetComponent<RectTransform>();
@@ -82,6 +85,15 @@ public class BlockBehaviour : MonoBehaviour
                         // Check if there's already a block placed
                         // then break to avoid placement
                         if (block.BlockParent.tag == formPlaced)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        // Check if there's already a block placed
+                        // then break to avoid placement
+                        if(result.gameObject.tag == formPlaced)
                         {
                             break;
                         }

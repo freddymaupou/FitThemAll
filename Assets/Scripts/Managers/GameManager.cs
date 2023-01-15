@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Forms To Move/ To Play With")]
     [SerializeField] private List<BlockBehaviour> blocksToMove = new List<BlockBehaviour>();
-    [SerializeField] private List<Color> colorsToUse = new List<Color>();
+    //[SerializeField] private List<Color> colorsToUse = new List<Color>();
 
     [Header("UI Buttons")]
     [SerializeField] private List<Image> uiButtons = new List<Image>();
@@ -156,6 +156,8 @@ public class GameManager : MonoBehaviour
     private void Win()
     {
         UIManager.Instance.ChooseRandomEmojis();
+        // Music to play
+        AudioManager.Instance.PlaySound("Win");
     }
 
     private void OnDestroy()
@@ -175,10 +177,21 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Use Random Color For Each Blocks")]
     public void RandomBlocksColorAtStart()
     {
+        // Got another way of doing this by randomizing in a List of Color made chosen in the Inspector
+        // And not using the same color randomized for the current forms in the level
+        // => problem is : we have to make a big list to prevent any big level with multiple forms
+        // Example : if the list is 10 colors but the level is 11 forms, a form will not be colorized as requested and will provoke an error
+
         //List<Color> colorsUsed = new List<Color>();
 
         for (int i = 0; i < blocksToMove.Count; i++)
         {
+            Color randomColor = Random.ColorHSV(0f, 1f ,1f ,1f, 1f, 1f);
+            for (int j = 0; j < blocksToMove[i].Blocks.Count; j++)
+            {
+                blocksToMove[i].Blocks[j].GetComponent<Image>().color = randomColor;
+            }
+
             /*int randomColor = Random.Range(0, colorsToUse.Count);
             Color blocksColor = colorsToUse[randomColor];
 
@@ -191,11 +204,6 @@ public class GameManager : MonoBehaviour
 
             colorsUsed.Add(blocksColor);
 */
-            Color randomColor = Random.ColorHSV(0f,1f,1f,1f);
-            for (int j = 0; j < blocksToMove[i].Blocks.Count; j++)
-            {
-                blocksToMove[i].Blocks[j].GetComponent<Image>().color = randomColor;
-            }
         }
     }
 }

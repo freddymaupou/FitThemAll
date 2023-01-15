@@ -33,7 +33,6 @@ public class GameManagerEditor : Editor
             {
                 gm.BlocksToMove[i].gameObject.layer = 6;
 
-
                 if(!gm.BlocksToMove[i].TryGetComponent(out LeanDragTranslate translate))
                 {
                     translate.Use.RequiredSelectable = gm.GetComponent<LeanSelectableByFinger>();

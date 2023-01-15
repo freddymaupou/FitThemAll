@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using System.IO;
+using PlasticGui.WorkspaceWindow.Home;
 
 [CustomEditor(typeof(LevelEditorRuntime))]
 public class LevelEditor : Editor
@@ -15,9 +16,15 @@ public class LevelEditor : Editor
 
     private int width = 0;
     private int height = 0;
+
     private Color colorChosen;
+    private Color originalColor;
+    private Sprite originalCellImg;
 
     private int sceneLevelNumber;
+
+    private bool gridCreated;
+    private bool resetColor;
 
     private enum GridLayout
     {
@@ -64,27 +71,114 @@ public class LevelEditor : Editor
             }
             gridMana.GridSize = width * height;
             gridMana.SpawnGrid();
+            originalCellImg = gridMana.GetGrid[0].GetComponent<Image>().sprite;
+            originalColor = gridMana.GetGrid[0].GetComponent<Image>().color;
 
-            for(int i = 0; i < width; i++)
-            {
-                GUILayout.BeginHorizontal();
-                for(int j = 0; j < height; j++)
-                {
-
-                }
-                GUILayout.EndHorizontal();
-            }
+            gridCreated = true;
+            createGrid = false;
         }
 
+        resetColor = EditorGUILayout.Toggle("Reset Color ? ", resetColor);
+
         colorChosen = EditorGUILayout.ColorField(colorChosen);
+
         // Show grid in the editor
+        if (gridCreated)
+        {
+            int cellCount = 0;
+            if(gridLayout == GridLayout.Horizontal)
+            {
+                if (resetColor)
+                {
+                    for(int i = 0; i < gridMana.GetGrid.Count; i++)
+                    {
+                        gridMana.GetGrid[i].GetComponent<Image>().sprite = originalCellImg;
+                        gridMana.GetGrid[i].GetComponent<Image>().color = originalColor;
+                    }
+                    SceneView.RepaintAll();
+                }
+                else
+                {
+                    for (int i = 0; i < height; i++)
+                    {
+                        GUILayout.BeginHorizontal();
+                        for(int j = 0; j < width; j++)
+                        {
+                            if(GUILayout.Button(" "))
+                            {
+                                gridMana.GetGrid[cellCount].GetComponent<Image>().color = colorChosen;
+                                SceneView.RepaintAll();
+                            }
+                            cellCount++;
+                        }
+                        GUILayout.EndHorizontal();
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < width; i++)
+                {
+                    GUILayout.BeginHorizontal();
+                    for (int j = 0; j < height; j++)
+                    {
+                        GUILayout.Button(" ");
+                    }
+                    GUILayout.EndHorizontal();
+                }
+            }
 
+        }
 
-        // Creat Level (Scene)
+        // Create Level (Scene)
         bool createLevel = GUILayout.Button("Create Level");
 
         if (createLevel)
         {
+            List<GameObject> formsCreated = new List<GameObject>();
+
+            for(int i = 0; i < gridMana.GetGrid.Count; i++)
+            {
+                formsCreated.Add(gridMana.GetGrid[i]);
+            }
+
+            for (int i = 0; i < formsCreated.Count; i++)
+            {
+                List<GameObject> newFormCreated = new List<GameObject>();
+
+                GameObject form = formsCreated[i];
+
+                newFormCreated.Add(form);
+
+                formsCreated.Remove(form);
+
+                for (int j = 0; j < formsCreated.Count; j++)
+                {
+                    if(formsCreated[j].GetComponent<Image>().color == form.GetComponent<Image>().color)
+                    {
+                        newFormCreated.Add(formsCreated[j]);
+                        formsCreated.Remove(formsCreated[j]);
+                        j--;
+                    }
+                }
+
+                GameObject formsParent = Instantiate(lvlEdit.formParent, lvlEdit.formsToFillTheGrid);
+
+                for (int j = 0; j < newFormCreated.Count; j++)
+                {
+                    GameObject clone = Instantiate(newFormCreated[j], formsParent.transform);
+                    clone.GetComponent<RectTransform>().sizeDelta = new Vector2(125,125);
+                }
+
+                i--;
+            }
+
+            for (int i = 0; i < gridMana.GetGrid.Count; i++)
+            {
+                gridMana.GetGrid[i].GetComponent<Image>().sprite = originalCellImg;
+                gridMana.GetGrid[i].GetComponent<Image>().color = originalColor;
+            }
+
             Scene actualScene = EditorSceneManager.GetActiveScene();
             sceneGameObjects = actualScene.GetRootGameObjects();
 
@@ -93,11 +187,11 @@ public class LevelEditor : Editor
             Scene sceneCreated = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
 
             // Name The Scene and Save the scene
-            string path = Application.dataPath + "/Scenes/Level" + sceneLevelNumber++ +".unity";
+            string path = Application.dataPath + "/Scenes/Level " + sceneLevelNumber++ + ".unity";
             PlayerPrefs.SetInt("SceneLevelNumber", sceneLevelNumber);
 
-            EditorSceneManager.SaveScene(sceneCreated, path, false);
-            EditorSceneManager.CloseScene(sceneCreated, true);
+            //EditorSceneManager.SaveScene(sceneCreated, path, false);
+            //EditorSceneManager.CloseScene(sceneCreated, true);
             Debug.Log("Saved Scene " + path);
         }
     }

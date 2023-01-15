@@ -1018,17 +1018,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blocksToMove: []
-  colorsToUse:
-  - {r: 0.9245283, g: 0.85980237, b: 0.082858644, a: 1}
-  - {r: 0.8018868, g: 0.049172327, b: 0.049172327, a: 1}
-  - {r: 0.26517445, g: 0.9528302, b: 0.9528302, a: 1}
-  - {r: 0.06474723, g: 0.9150943, b: 0.092348054, a: 1}
-  - {r: 0.18609825, g: 0.2637749, b: 0.9622642, a: 1}
-  - {r: 0.95598364, g: 0.1843137, b: 0.9607843, a: 1}
-  - {r: 0.8962264, g: 0.5453491, b: 0.114142045, a: 1}
-  - {r: 0.6795584, g: 0.9433962, b: 0.25364897, a: 1}
-  - {r: 0.94509804, g: 0.254902, b: 0.47633454, a: 1}
-  - {r: 0.5824752, g: 0.254902, b: 0.94509804, a: 1}
   uiButtons:
   - {fileID: 901848825}
   - {fileID: 415787420}
@@ -1037,7 +1026,7 @@ MonoBehaviour:
   lvlBottomInGameTxt: {fileID: 1117801146}
   lvlNumberIntroTxt: {fileID: 985192551}
   lvlNumber: 4
-  lvlMax: 4
+  lvlMax: 8
 --- !u!4 &750824909
 Transform:
   m_ObjectHideFlags: 0

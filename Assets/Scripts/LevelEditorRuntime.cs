@@ -18,6 +18,9 @@ public class LevelEditorRuntime : MonoBehaviour
     #endregion
 
     public GridManager gridManager;
+    public Transform formsToFillTheGrid;
+    public GameObject formParent;
+
     private List<LeanSelectable> matSelected = new List<LeanSelectable>();
 
     public void Start()
