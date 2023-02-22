@@ -2939,8 +2939,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6095236348083696610, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.72928804
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095236348083696610, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.72928804
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095236348083696610, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.72928804
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095236348083696610, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -279.74893
+      value: -221.68091
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095236348083696610, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -172.92328
       objectReference: {fileID: 0}
     - target: {fileID: 6095236348083696613, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
       propertyPath: m_Spacing.x
@@ -2978,6 +2994,10 @@ PrefabInstance:
       propertyPath: m_ConstraintCount
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6095236348236997407, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 166.124
+      objectReference: {fileID: 0}
     - target: {fileID: 6095236348412091225, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
       propertyPath: m_Name
       value: UI
@@ -2986,6 +3006,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 6095236348412091227, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095236348412091227, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 6095236348412091229, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
       propertyPath: m_Pivot.x
       value: 0

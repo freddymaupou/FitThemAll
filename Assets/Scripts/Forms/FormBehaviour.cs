@@ -60,8 +60,6 @@ public class FormBehaviour : MonoBehaviour
     public void OnFormSelected(LeanSelect select)
     {
         // Touch vibration
-        Vibration.Init();
-        Vibration.Vibrate(50);
 
         // Check if the form is in the grid
         // then reset default settings

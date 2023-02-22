@@ -5054,11 +5054,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6095236348083696610, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -363.24927
+      value: -20.973969
       objectReference: {fileID: 0}
     - target: {fileID: 6095236348083696610, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -212.99695
+      value: 138.90952
       objectReference: {fileID: 0}
     - target: {fileID: 6095236348083696613, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
       propertyPath: m_Spacing.x
@@ -5096,6 +5096,14 @@ PrefabInstance:
       propertyPath: m_ConstraintCount
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6095236348236997407, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -472.28104
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095236348236997407, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -60.663483
+      objectReference: {fileID: 0}
     - target: {fileID: 6095236348412091225, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
       propertyPath: m_Name
       value: UI
@@ -5104,6 +5112,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 6095236348412091227, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095236348412091227, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 6095236348412091229, guid: 5f085a2b603fa3a4c99cfa00fa376998, type: 3}
       propertyPath: m_Pivot.x
       value: 0

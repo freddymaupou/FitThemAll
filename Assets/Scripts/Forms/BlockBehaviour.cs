@@ -139,8 +139,6 @@ public class BlockBehaviour : MonoBehaviour
     public void OnSelect(LeanSelect select)
     {
         #region Effects
-        Vibration.Init();
-        Vibration.Vibrate(50);
         AudioManager.Instance.PlaySound("SelectForm");
         for (int j = 0; j < blocks.Count; j++)
         {
